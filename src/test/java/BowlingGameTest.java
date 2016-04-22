@@ -8,4 +8,11 @@ public class BowlingGameTest {
         BowlingGame game = new BowlingGame();
         assertEquals(0, game.score());
     }
+
+    @Test
+    public void singleRollScoreIsOne() throws Exception {
+        BowlingGame game = new BowlingGame();
+        game.roll(1)
+        assertEquals(1, game.score());
+    }
 }
