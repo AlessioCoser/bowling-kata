@@ -12,7 +12,7 @@ public class BowlingGameTest {
     @Test
     public void singleRollScoreIsOne() throws Exception {
         BowlingGame game = new BowlingGame();
-        game.roll(1)
+        game.roll(1);
         assertEquals(1, game.score());
     }
 }
