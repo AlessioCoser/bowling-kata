@@ -5,19 +5,26 @@ public class BowlingGame {
 
     public int score() {
         int score = 0;
-        for (int i = 0; i < rounds.size(); i++) {
-            BowlingRound currentRound = rounds.get(i);
-            if (i > 0) {
+        if(hasRounds()) {
+
+            score += rounds.get(0).getScore();
+
+            for (int i = 1; i < rounds.size(); i++) {
+                BowlingRound currentRound = rounds.get(i);
                 BowlingRound previousRound = rounds.get(i - 1);
 
                 if (previousRound.isStrike()) {
-                    score += currentRound.getFirstRoll();
+                    score += currentRound.getScore();
                 }
-            }
 
-            score += currentRound.getScore();
+                score += currentRound.getScore();
+            }
         }
         return score;
+    }
+
+    private boolean hasRounds() {
+        return rounds.size() > 0;
     }
 
     public void newRound(BowlingRound round) {

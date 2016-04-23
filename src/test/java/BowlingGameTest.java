@@ -34,7 +34,7 @@ public class BowlingGameTest {
         game.newRound(newStrike( ));
         game.newRound(newRound(3, 5));
 
-        assertEquals(21, game.score());
+        assertEquals(26, game.score());
     }
 
     private BowlingRound newRound(int firstRoll, int secondRoll) {
