@@ -58,8 +58,33 @@ public class BowlingGameTest {
         assertEquals(51, game.score());
     }
 
+    @Test
+    public void allSparesScoreOneThousandForty() throws Exception {
+        BowlingGame game = new BowlingGame();
+
+        game.newRound(newSpare());
+        game.newRound(newSpare());
+        game.newRound(newSpare());
+        game.newRound(newSpare());
+        game.newRound(newSpare());
+        game.newRound(newSpare());
+        game.newRound(newSpare());
+        game.newRound(newSpare());
+        game.newRound(newSpare());
+        game.newRound(newSpare());
+        game.newBonusRound(newRound(4, 0));
+        assertEquals(140, game.score());
+    }
+
     private BowlingRound newRound(int firstRoll, int secondRoll) {
         BowlingRound round = new BowlingRound();
+        round.roll(firstRoll);
+        round.roll(secondRoll);
+        return round;
+    }
+
+    private BowlingRound newBonusRound(int firstRoll, int secondRoll) {
+        BowlingRound round = new BowlingBonusRound();
         round.roll(firstRoll);
         round.roll(secondRoll);
         return round;
