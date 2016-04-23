@@ -5,28 +5,34 @@ public class BowlingGame {
 
     public int score() {
         int score = 0;
-        for (BowlingRound round : rounds) {
-            score += round.getScore() + beforeSpareBonus( round ) + beforeStrikeBonus( round );
-        }
+        for (BowlingRound round : rounds)
+            score += round.getScore() + addBonuses(round);
+
         return score;
     }
 
-    private int beforeStrikeBonus(BowlingRound round) {
-        int score = 0;
-        if(round.previousRound().isStrike()){
-            score += round.getScore();
-        }
-
-        if((round.previousRound().isStrike()) && (round.previousRound().previousRound().isStrike())) {
-            score += round.getFirstRoll();
-        }
-        return score;
+    private int addBonuses(BowlingRound round) {
+        return beforeSpareBonus( round ) + beforeStrikeBonus( round ) + beforeDoubleStrikeBonus( round );
     }
 
     private int beforeSpareBonus(BowlingRound round) {
-        if(round.previousRound().isSpare()){
+        if(round.previousRound().isSpare())
             return round.getFirstRoll();
-        }
+
+        return 0;
+    }
+
+    private int beforeStrikeBonus(BowlingRound round) {
+        if(round.previousRound().isStrike())
+            return round.getScore();
+
+        return 0;
+    }
+
+    private int beforeDoubleStrikeBonus(BowlingRound round) {
+        if((round.previousRound().isStrike()) && round.previousRound().previousRound().isStrike())
+            return round.getFirstRoll();
+
         return 0;
     }
 
