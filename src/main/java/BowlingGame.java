@@ -1,14 +1,19 @@
-/**
- * Created by alessio on 22/04/16.
- */
+import java.util.ArrayList;
+
 public class BowlingGame {
-    private int score = 0;
+    private ArrayList<BowlingRound> rounds = new ArrayList<BowlingRound>();
 
     public int score() {
+        int score = 0;
+        for (int i = 0; i < rounds.size(); i++) {
+            BowlingRound currentRound = rounds.get(i);
+
+            score += currentRound.getScore();
+        }
         return score;
     }
 
-    public void roll(int score) {
-        this.score += score;
+    public void newRound(BowlingRound round) {
+        rounds.add(round);
     }
 }
