@@ -12,11 +12,7 @@ public class BowlingGameTest {
     public void singleRoundScoreIsEight() throws Exception {
         BowlingGame game = new BowlingGame();
 
-        BowlingRound round = new BowlingRound();
-        round.roll(3);
-        round.roll(5);
-
-        game.newRound( round );
+        game.newRound(newRound(3, 5));
 
         assertEquals(8, game.score());
     }
@@ -25,17 +21,8 @@ public class BowlingGameTest {
     public void multiRoundScoreIsSixteen() throws Exception {
         BowlingGame game = new BowlingGame();
 
-        BowlingRound round = new BowlingRound();
-        round.roll(5);
-        round.roll(3);
-
-        game.newRound( round );
-
-        round = new BowlingRound();
-        round.roll(3);
-        round.roll(5);
-
-        game.newRound( round );
+        game.newRound(newRound(3, 5));
+        game.newRound(newRound(3, 5));
 
         assertEquals(16, game.score());
     }
@@ -44,17 +31,22 @@ public class BowlingGameTest {
     public void multiRoundOneStrikeScoreIsTwentyOne() throws Exception {
         BowlingGame game = new BowlingGame();
 
-        BowlingRound round = new BowlingRound();
-        round.roll(10);
-
-        game.newRound( round );
-
-        round = new BowlingRound();
-        round.roll(3);
-        round.roll(5);
-
-        game.newRound( round );
+        game.newRound(newStrike( ));
+        game.newRound(newRound(3, 5));
 
         assertEquals(21, game.score());
+    }
+
+    private BowlingRound newRound(int firstRoll, int secondRoll) {
+        BowlingRound round = new BowlingRound();
+        round.roll(firstRoll);
+        round.roll(secondRoll);
+        return round;
+    }
+
+    private BowlingRound newStrike() {
+        BowlingRound round = new BowlingRound();
+        round.roll(10);
+        return round;
     }
 }
