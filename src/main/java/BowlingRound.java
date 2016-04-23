@@ -19,6 +19,10 @@ public class BowlingRound {
         return rolls.get(0) == 10;
     }
 
+    public boolean isSpare() {
+        return (rolls.get(0) + rolls.get(1)) == 10;
+    }
+
     public int getFirstRoll() {
         return rolls.get(0);
     }

@@ -15,6 +15,8 @@ public class BowlingGame {
 
                 if (previousRound.isStrike()) {
                     score += currentRound.getScore();
+                }else if (previousRound.isSpare()) {
+                    score += currentRound.getFirstRoll();
                 }
 
                 score += currentRound.getScore();
