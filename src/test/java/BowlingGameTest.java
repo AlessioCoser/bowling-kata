@@ -28,13 +28,23 @@ public class BowlingGameTest {
     }
 
     @Test
-    public void multiRoundOneStrikeScoreIsTwentyOne() throws Exception {
+    public void multiRoundOneStrikeScoreIsTwentySix() throws Exception {
         BowlingGame game = new BowlingGame();
 
         game.newRound(newStrike( ));
         game.newRound(newRound(3, 5));
 
         assertEquals(26, game.score());
+    }
+
+    @Test
+    public void multiRoundOneSpareScoreIsTwentyOne() throws Exception {
+        BowlingGame game = new BowlingGame();
+
+        game.newRound(newSpare( ));
+        game.newRound(newRound(3, 5));
+
+        assertEquals(21, game.score());
     }
 
     private BowlingRound newRound(int firstRoll, int secondRoll) {
@@ -47,6 +57,13 @@ public class BowlingGameTest {
     private BowlingRound newStrike() {
         BowlingRound round = new BowlingRound();
         round.roll(10);
+        return round;
+    }
+
+    private BowlingRound newSpare() {
+        BowlingRound round = new BowlingRound();
+        round.roll(4);
+        round.roll(6);
         return round;
     }
 }
