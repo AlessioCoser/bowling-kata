@@ -5,24 +5,29 @@ public class BowlingGame {
 
     public int score() {
         int score = 0;
-        if(hasRounds()) {
-
-            score += rounds.get(0).getScore();
-
-            for (int i = 1; i < rounds.size(); i++) {
-                BowlingRound currentRound = rounds.get(i);
-                BowlingRound previousRound = rounds.get(i - 1);
-
-                if (previousRound.isStrike()) {
-                    score += currentRound.getScore();
-                }else if (previousRound.isSpare()) {
-                    score += currentRound.getFirstRoll();
-                }
-
-                score += currentRound.getScore();
-            }
+        for (BowlingRound round : rounds) {
+            score += round.getScore() + beforeSpareBonus( round ) + beforeStrikeBonus( round );
         }
         return score;
+    }
+
+    private int beforeStrikeBonus(BowlingRound round) {
+        int score = 0;
+        if(round.previousRound().isStrike()){
+            score += round.getScore();
+        }
+
+        if((round.previousRound().isStrike()) && (round.previousRound().previousRound().isStrike())) {
+            score += round.getFirstRoll();
+        }
+        return score;
+    }
+
+    private int beforeSpareBonus(BowlingRound round) {
+        if(round.previousRound().isSpare()){
+            return round.getFirstRoll();
+        }
+        return 0;
     }
 
     private boolean hasRounds() {
@@ -30,6 +35,10 @@ public class BowlingGame {
     }
 
     public void newRound(BowlingRound round) {
+        if(hasRounds()) {
+            BowlingRound lastRound = rounds.get(rounds.size() - 1);
+            round.setPreviousRound(lastRound);
+        }
         rounds.add(round);
     }
 }
