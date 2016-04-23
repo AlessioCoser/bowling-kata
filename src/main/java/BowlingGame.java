@@ -47,4 +47,8 @@ public class BowlingGame {
         }
         rounds.add(round);
     }
+
+    public void newBonusRound(BowlingRound round) {
+        rounds.add(round);
+    }
 }
