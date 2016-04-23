@@ -62,29 +62,26 @@ public class BowlingGameTest {
     public void allSparesScoreOneThousandForty() throws Exception {
         BowlingGame game = new BowlingGame();
 
-        game.newRound(newSpare());
-        game.newRound(newSpare());
-        game.newRound(newSpare());
-        game.newRound(newSpare());
-        game.newRound(newSpare());
-        game.newRound(newSpare());
-        game.newRound(newSpare());
-        game.newRound(newSpare());
-        game.newRound(newSpare());
-        game.newRound(newSpare());
+        for(int i = 0; i < 10; i++)
+            game.newRound(newSpare());
+
         game.newBonusRound(newRound(4, 0));
         assertEquals(140, game.score());
     }
 
-    private BowlingRound newRound(int firstRoll, int secondRoll) {
-        BowlingRound round = new BowlingRound();
-        round.roll(firstRoll);
-        round.roll(secondRoll);
-        return round;
+    @Test
+    public void allStrikeScoreThreeThousand() throws Exception {
+        BowlingGame game = new BowlingGame();
+
+        for(int i = 0; i < 10; i++)
+            game.newRound(newStrike());
+
+        game.newBonusRound(newRound(10, 10));
+        assertEquals(300, game.score());
     }
 
-    private BowlingRound newBonusRound(int firstRoll, int secondRoll) {
-        BowlingRound round = new BowlingBonusRound();
+    private BowlingRound newRound(int firstRoll, int secondRoll) {
+        BowlingRound round = new BowlingRound();
         round.roll(firstRoll);
         round.roll(secondRoll);
         return round;
