@@ -47,6 +47,17 @@ public class BowlingGameTest {
         assertEquals(21, game.score());
     }
 
+    @Test
+    public void twoConsecutiveStrikeScoreFiftyOne() throws Exception {
+        BowlingGame game = new BowlingGame();
+
+        game.newRound(newStrike());
+        game.newRound(newStrike());
+        game.newRound(newRound(3, 6));
+
+        assertEquals(51, game.score());
+    }
+
     private BowlingRound newRound(int firstRoll, int secondRoll) {
         BowlingRound round = new BowlingRound();
         round.roll(firstRoll);
