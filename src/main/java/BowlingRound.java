@@ -10,9 +10,9 @@ public class BowlingRound {
 
     public int getScore() {
         int score = 0;
-        for (int i = 0; i < rolls.size(); i++) {
-            score += rolls.get(i);
-        }
+        for (int roll : rolls)
+            score += roll;
+
         return score;
     }
 
