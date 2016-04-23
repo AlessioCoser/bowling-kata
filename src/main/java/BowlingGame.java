@@ -7,6 +7,13 @@ public class BowlingGame {
         int score = 0;
         for (int i = 0; i < rounds.size(); i++) {
             BowlingRound currentRound = rounds.get(i);
+            if (i > 0) {
+                BowlingRound previousRound = rounds.get(i - 1);
+
+                if (previousRound.isStrike()) {
+                    score += currentRound.getFirstRoll();
+                }
+            }
 
             score += currentRound.getScore();
         }

@@ -1,8 +1,5 @@
 import java.util.ArrayList;
 
-/**
- * Created by alessio on 23/04/16.
- */
 public class BowlingRound {
     private ArrayList<Integer> rolls = new ArrayList<Integer>();
 
@@ -16,5 +13,13 @@ public class BowlingRound {
             score += rolls.get(i);
         }
         return score;
+    }
+
+    public boolean isStrike() {
+        return rolls.get(0) == 10;
+    }
+
+    public int getFirstRoll() {
+        return rolls.get(0);
     }
 }
