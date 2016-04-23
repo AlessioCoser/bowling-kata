@@ -39,4 +39,22 @@ public class BowlingGameTest {
 
         assertEquals(16, game.score());
     }
+
+    @Test
+    public void multiRoundOneStrikeScoreIsTwentyOne() throws Exception {
+        BowlingGame game = new BowlingGame();
+
+        BowlingRound round = new BowlingRound();
+        round.roll(10);
+
+        game.newRound( round );
+
+        round = new BowlingRound();
+        round.roll(3);
+        round.roll(5);
+
+        game.newRound( round );
+
+        assertEquals(21, game.score());
+    }
 }
