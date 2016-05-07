@@ -2,6 +2,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class BowlingGameTest {
+    private BowlingRound STRIKE = newStrike();
     @Test
     public void newGameScoreIsZero() throws Exception {
         BowlingGame game = new BowlingGame();
@@ -31,7 +32,7 @@ public class BowlingGameTest {
     public void multiRoundOneStrikeScoreIsTwentySix() throws Exception {
         BowlingGame game = new BowlingGame();
 
-        game.newRound(newStrike( ));
+        game.newRound(STRIKE);
         game.newRound(newRound(3, 5));
 
         assertEquals(26, game.score());
@@ -51,8 +52,8 @@ public class BowlingGameTest {
     public void twoConsecutiveStrikeScoreFiftyOne() throws Exception {
         BowlingGame game = new BowlingGame();
 
-        game.newRound(newStrike());
-        game.newRound(newStrike());
+        game.newRound(STRIKE);
+        game.newRound(STRIKE);
         game.newRound(newRound(3, 6));
 
         assertEquals(51, game.score());
@@ -74,7 +75,7 @@ public class BowlingGameTest {
         BowlingGame game = new BowlingGame();
 
         for(int i = 0; i < 10; i++)
-            game.newRound(newStrike());
+            game.newRound(STRIKE);
 
         game.newBonusRound(newRound(10, 10));
         assertEquals(300, game.score());
