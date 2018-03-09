@@ -4,6 +4,13 @@ Bowling Game Kata
 
 [bowling-score]: http://www.wpclipart.com/recreation/sports/bowling/bowling_scoresheet_example.png "bowling score card"
 
+## General requirements
+- You may use whatever programming language/platform you prefer. Use something that you know well.
+- You must release your work with an OSI-approved open source license of your choice.
+- You must deliver the sources of your application, with a README that explains how to compile and run it.
+- Add the code to your own Github account and send us the link.
+
+**IMPORTANT:**  Implement the requirements focusing on **writing the best code** you can produce.
 
 ## Scoring bowling
 
